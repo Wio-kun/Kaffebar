@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Guess the number 0-100</h1>
+
+    <input id="number" type="number">
+    <button id="button">Gjett</button>
+    <p id="forsøk"></p>
+    <p id="tilbakemelding"></p>
+    <button id="igjen">Ja</button>
+
+    <script>
+        var EL_number = document.querySelector('#number')
+        var EL_button = document.querySelector('#button')
+        var EL_tilbakemelding = document.querySelector('#tilbakemelding')
+        var EL_igjen = document.querySelector('#igjen')
+        EL_igjen.style.display = 'none'
+        var EL_forsøk = document.querySelector('#forsøk')
+        var antall_gjett = 0
+
+        EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
+
+        function gjett(){
+            console.log(EL_number.value)
+            antall_gjett += 1
+            EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
+            if (EL_number.value == tall){
+                EL_tilbakemelding.innerHTML = 'Du gjettet riktig tall! Vil du prøve på nytt?'
+                EL_igjen.style.display = 'block'
+            }else if(EL_number.value < tall){
+                EL_tilbakemelding.innerHTML = 'Du gjettet for lavt'
+            }else if (EL_number.value > tall){
+                EL_tilbakemelding.innerHTML = 'Du gjettet for høyt'
+            }
+        }
+
+        function igjen(){
+            tall = Math.floor(Math.random() * 100)
+            EL_tilbakemelding.innerHTML = 'Ver så god, prøv igjen!'
+            console.log(tall)
+            EL_igjen.style.display = 'none'
+            antall_gjett = 0
+            EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
+        }
+        EL_button.addEventListener('click', gjett)
+
+        EL_igjen.addEventListener('click', igjen)
+
+        var tall = Math.floor(Math.random() * 100);
+        console.log(tall)
+    </script>
+
+</body>
+</html>
