@@ -5,16 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="guess.css">
 </head>
 <body>
 
     <h1>Guess the number 0-100</h1>
-
-    <input id="number" type="number">
-    <button id="button">Gjett</button>
-    <p id="forsøk"></p>
-    <p id="tilbakemelding"></p>
-    <button id="igjen">Ja</button>
+    <div class ="alt">
+        <div class="venstre">
+            <input id="number" type="number">
+            <button id="button">Gjett</button>
+            <p id="forsøk"></p>
+            <p id="tilbakemelding"></p>
+            <h2 id="timer">Tid igjen: 60 sek</h2>
+            <h3 id="treg"></h3>
+            <button id="igjen">Ja</button>
+        </div>
+        <div class="høyre">
+            <h2 id="r_gjett">Antall riktig gjett: 0</h2>
+        </div>
+    </div>
 
     <script>
         var EL_number = document.querySelector('#number')
@@ -24,20 +33,32 @@
         EL_igjen.style.display = 'none'
         var EL_forsøk = document.querySelector('#forsøk')
         var antall_gjett = 0
+        var EL_timer = document.querySelector('#timer')
+        var EL_treg = document.querySelector('#treg')
+        var riktig = false
+        var riktig_gjett = 0
+        var EL_riktig_gjett = document.querySelector('#r_gjett')
 
         EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
 
         function gjett(){
-            console.log(EL_number.value)
-            antall_gjett += 1
-            EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
-            if (EL_number.value == tall){
-                EL_tilbakemelding.innerHTML = 'Du gjettet riktig tall! Vil du prøve på nytt?'
-                EL_igjen.style.display = 'block'
-            }else if(EL_number.value < tall){
-                EL_tilbakemelding.innerHTML = 'Du gjettet for lavt'
-            }else if (EL_number.value > tall){
-                EL_tilbakemelding.innerHTML = 'Du gjettet for høyt'
+            if (riktig == true){
+
+            }else if (riktig == false){
+                console.log(EL_number.value)
+                antall_gjett += 1
+                EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
+                if (EL_number.value == tall){
+                    EL_tilbakemelding.innerHTML = 'Du gjettet riktig tall! Vil du prøve på nytt?'
+                    EL_igjen.style.display = 'block'
+                    EL_treg.innerHTML = ""
+                    riktig = true
+                    riktig_gjett += 1
+                }else if(EL_number.value < tall){
+                    EL_tilbakemelding.innerHTML = 'Du gjettet for lavt'
+                }else if (EL_number.value > tall){
+                    EL_tilbakemelding.innerHTML = 'Du gjettet for høyt'
+                }
             }
         }
 
@@ -48,6 +69,9 @@
             EL_igjen.style.display = 'none'
             antall_gjett = 0
             EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
+            teller = 60
+            EL_treg.innerHTML = ""
+            riktig = false
         }
         EL_button.addEventListener('click', gjett)
 
@@ -55,6 +79,26 @@
 
         var tall = Math.floor(Math.random() * 100);
         console.log(tall)
+
+        var teller = 5
+        function myTimer(){
+            if (riktig == true){
+                EL_riktig_gjett.innerHTML = 'Antall riktig gjett: ' + riktig_gjett
+            }else if (riktig == false){
+                console.log('timer:', teller)
+                teller--
+                if (teller <= 0){
+                tall = Math.floor(Math.random() * 100)
+                console.log(tall)
+                EL_treg.innerHTML = "Du brukte for lang tid, tallet er resatt"
+                teller = 60
+                }
+                EL_timer.innerHTML = "Tid igjen: " + teller + " sek"
+            }
+        }
+        setInterval(myTimer, 1000)
+
+
     </script>
 
 </body>

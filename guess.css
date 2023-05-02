@@ -1,0 +1,11 @@
+.alt {
+    display: flex;
+    flex-direction: row;
+}
+.venstre {
+    width: 50%;
+}
+.høyre {
+    width: 50%;
+    text-align: center;
+}
