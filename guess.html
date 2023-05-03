@@ -9,19 +9,22 @@
 </head>
 <body>
 
-    <h1>Guess the number 0-100</h1>
+    <h1>Gjett tallet 0-100</h1>
     <div class ="alt">
         <div class="venstre">
             <input id="number" type="number">
             <button id="button">Gjett</button>
+            <p id="runde_forsøk"></p>
             <p id="forsøk"></p>
             <p id="tilbakemelding"></p>
-            <h2 id="timer">Tid igjen: 60 sek</h2>
+            <h2 id="timer">Tid igjen: 30 sek</h2>
             <h3 id="treg"></h3>
             <button id="igjen">Ja</button>
         </div>
         <div class="høyre">
+            <h2 id="runder">Antall runder: 1</h2>
             <h2 id="r_gjett">Antall riktig gjett: 0</h2>
+            <h2 id="score">Score: 0</h2>
         </div>
     </div>
 
@@ -31,15 +34,22 @@
         var EL_tilbakemelding = document.querySelector('#tilbakemelding')
         var EL_igjen = document.querySelector('#igjen')
         EL_igjen.style.display = 'none'
+        var EL_runde_forsøk = document.querySelector('#runde_forsøk')
         var EL_forsøk = document.querySelector('#forsøk')
+        var antall_runde_gjett = 0
         var antall_gjett = 0
         var EL_timer = document.querySelector('#timer')
         var EL_treg = document.querySelector('#treg')
         var riktig = false
         var riktig_gjett = 0
         var EL_riktig_gjett = document.querySelector('#r_gjett')
+        var EL_score = document.querySelector('#score')
+        var score = 0
+        var runder = 1
+        var EL_runder = document.querySelector('#runder')
 
-        EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
+        EL_runde_forsøk.innerHTML = 'Antall gjett denne runden = ' + antall_runde_gjett
+        EL_forsøk.innerHTML = 'Antall gjett totalt = ' + antall_gjett
 
         function gjett(){
             if (riktig == true){
@@ -47,29 +57,41 @@
             }else if (riktig == false){
                 console.log(EL_number.value)
                 antall_gjett += 1
+                antall_runde_gjett +=1
                 EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
+                EL_runde_forsøk.innerHTML = 'Antall gjett denne runden = ' + antall_runde_gjett
                 if (EL_number.value == tall){
                     EL_tilbakemelding.innerHTML = 'Du gjettet riktig tall! Vil du prøve på nytt?'
                     EL_igjen.style.display = 'block'
                     EL_treg.innerHTML = ""
                     riktig = true
                     riktig_gjett += 1
+                    if (teller <= 15){
+                        score += 1
+                    }else if (teller >= 15){
+                        score += 2
+                    }
+                    
+
                 }else if(EL_number.value < tall){
                     EL_tilbakemelding.innerHTML = 'Du gjettet for lavt'
                 }else if (EL_number.value > tall){
                     EL_tilbakemelding.innerHTML = 'Du gjettet for høyt'
                 }
             }
+            if (antall_runde_gjett >= 4){
+                teller = 5
+            }
         }
-
         function igjen(){
             tall = Math.floor(Math.random() * 100)
             EL_tilbakemelding.innerHTML = 'Ver så god, prøv igjen!'
             console.log(tall)
             EL_igjen.style.display = 'none'
-            antall_gjett = 0
-            EL_forsøk.innerHTML = 'Antall gjett = ' + antall_gjett
-            teller = 60
+            antall_runde_gjett = 0
+            EL_runde_forsøk.innerHTML = 'Antall gjett denne runden = ' + antall_runde_gjett
+            teller = 30
+            runder += 1
             EL_treg.innerHTML = ""
             riktig = false
         }
@@ -80,18 +102,18 @@
         var tall = Math.floor(Math.random() * 100);
         console.log(tall)
 
-        var teller = 5
+        var teller = 30
         function myTimer(){
             if (riktig == true){
+                EL_runder.innerHTML = 'Antall runder: ' + runder
                 EL_riktig_gjett.innerHTML = 'Antall riktig gjett: ' + riktig_gjett
+                EL_score.innerHTML = 'Score: ' + score
             }else if (riktig == false){
                 console.log('timer:', teller)
                 teller--
                 if (teller <= 0){
-                tall = Math.floor(Math.random() * 100)
-                console.log(tall)
-                EL_treg.innerHTML = "Du brukte for lang tid, tallet er resatt"
-                teller = 60
+                    igjen()
+                    EL_treg.innerHTML = "Du brukte for lang tid, tallet er resatt"
                 }
                 EL_timer.innerHTML = "Tid igjen: " + teller + " sek"
             }
