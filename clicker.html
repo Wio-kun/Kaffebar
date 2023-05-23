@@ -5,41 +5,400 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bacon roaster</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- 
         click bacon, get 1 cooked bacon
-        buy fire for 15 cooked bacon, fire can cook bacon quicker with uppgrades
-            price for fire * 1,2 pr fire bought
-        buy pan for 150 cooked bacon, cooks 2 bacon at a time, time to cook can be redused to 1 sec,
-            amount can be increased up to 7, price for pan * 1,3 pr pan bought
-        buy grill for 1200 cooked bacon, cooks 10 bacon at a time, time to cook can be redused to 4 sec,
-            amount can be increased up to 30, price for grill * 1,5 pr grill bought
-        buy neigborhood bbq for 8000 cooked bacon, cooks 40 bacon at a time,
-            time to cook can be reduced to 10 sec,amount can be increased up to 100,
-            price per neigborhood bbq * 1,75 pr neigborhood bbq bought
-        buy factory for 60000 cooked bacon, cooks 270 bacon at a time,
-            time to cook can be reducedto 22 sec, amount can be increased up to 500,
-            price per factory * 2 pr factory baught
-        buy forest fire for 400000 cooked bacon, cooks 600 bacon at a time,
-            time to cook can be reduced to 40 sec, amount can be increased up to 1400,
+        Bacon pr second = BPS
+        1. buy fire for 15 cooked bacon, cooks 0,2 BPS, price for fire * 1,2 pr fire bought
+        2. buy pan for 150 cooked bacon, cooks 1,4 BPS, price for pan * 1,3 pr pan bought
+        3. buy campfire for 1200 cooked bacon, cooks 13 BPS, price for campfire * 1,5 pr campfire bought
+        4. buy grill for 8000 cooked bacon, 52 BPS, price per grill * 1,75 pr grill bought
+        5. buy factory for 60000 cooked bacon, cooks 270 BPS, price per factory * 2 pr factory baught
+        6. buy forest fire for 400000 cooked bacon, cooks 1480 BPS, 
             price per forest fire * 2,1 pr forest fire bought
-        buy vulcano for 7000000 cooked bacon, cooks 1900 bacon at a time,
-            time to cook can be reduced to 80 sec, amount can be increased up to 3400,
-            price per vulcano * 2,5 pr vulcano bought
-        buy earth's core for 18000000 cooked bacon, cooks 5000 bacon at a time,
-            time to cook can be reduced to 120 sec, amount can be increased up to 12000,
+        7. buy vulcano for 7000000 cooked bacon, cooks 8000 BPS, price per vulcano * 2,5 pr vulcano bought
+        8. buy earth's core for 18000000 cooked bacon, cooks 46000 BPS,
             price per earth's core * 3 pr earth's core bought
-        buy sun for 500000000 cooked bacon, cooks 30000 bacon at a time,
-            time to cook can be reduced to 200 sec, amount can be increased up to 100000,
-            price per sun * 3,75 pr sun bought
+        9. buy sun for 500000000 cooked bacon, cooks 300000 BPS, price per sun * 3,75 pr sun bought
 
         enhancement for cursor, lightning strike, had a random chance of hitting,
-            hitts have a random chance to have lingering lightning 
+            hitts have a random chance to have lingering lightning. A lightning strike cooks 50 Bacon,
+            lingering lightning lasts 3 sec, and cooks 20 BPS
 
      -->
-    <img src="bacon.png" alt="">
+    <div class="all">
+        <div class="header">
+            <h1 class="header_h1">Bacon cooker</h1>
+        </div>
+        <div class="content">
+            <div class="left">
+                <h1 id="bacon_counter">Cooked bacon: 0</h1>
+                <h2 id="bps">Bacon per second: 0</h2>
+                <img id="bacon" class="bacon" src="bacon.png" alt="">
+            </div>
+            <div class="center">
+
+            </div>
+            <div class="right">
+                <div id="fire_div" class="cookers">
+                    <img id="fire" class="cooker_icons" src="fire.png" alt="">
+                    <h2 id="fires">0 Fire: 15 Cooked Bacon</h2>
+                </div>
+                <div id="pan_div" class="cookers">
+                    <img id="pan" class="cooker_icons" src="bacon_pan.png" alt="">
+                    <h2 id="pans">0 Pan: 150 Cooked Bacon</h2>
+                </div>
+                <div id="campfire_div" class="cookers">
+                    <img id="campfire" class="cooker_icons" src="campfire.png" alt="">
+                    <h2 id="campfires">0 Campfire: 1200 Cooked Bacon</h2>
+                </div>
+                <div id="grill_div" class="cookers">
+                    <img id="grill" class="cooker_icons" src="grill.png" alt="">
+                    <h2 id="grills">0 Grill: 8000 Cooked Bacon</h2>
+                </div>
+                <div id="factory_div" class="cookers">
+                    <img id="factory" class="cooker_icons" src="factory.png" alt="">
+                    <h2 id="factorys">0 Factory: 60000 Cooked Bacon</h2>
+                </div>
+                <div id="forest_fire_div" class="cookers">
+                    <img id="forest_fire" class="cooker_icons" src="forest_fire.png" alt="">
+                    <h2 id="forest_fires">0 Forest Fire: 400000 Cooked Bacon</h2>
+                </div>
+                <div id="volcano_div" class="cookers">
+                    <img id="volcano" class="cooker_icons" src="volcano.png" alt="">
+                    <h2 id="volcanos">0 Volcano: 7000000 Cooked Bacon</h2>
+                </div>
+                <div id="earths_core_div" class="cookers">
+                    <img id="earths_core" class="cooker_icons" src="earth's_core.png" alt="">
+                    <h2 id="earths_cores">0 Earths core: 18000000 Cooked Bacon</h2>
+                </div>
+                <div id="sun_div" class="cookers">
+                    <img id="sun" class="cooker_icons" src="sun.png" alt="">
+                    <h2 id="suns">0 Sun: 500000000 Cooked Bacon</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        var EL_bacon = document.querySelector('#bacon')
+        var bacon_counter = document.querySelector('#bacon_counter')
+        var cooked_bacon = 0
+
+        var EL_fire = document.querySelector('#fire')
+        var EL_fires = document.querySelector('#fires')
+        var fires = 0
+        var EL_fire_div = document.querySelector('#fire_div')
+
+        var EL_pan = document.querySelector('#pan')
+        var EL_pans = document.querySelector('#pans')
+        var pans = 0
+        var EL_pan_div = document.querySelector('#pan_div')
+
+        var EL_campfire = document.querySelector('#campfire')
+        var EL_campfires = document.querySelector('#campfires')
+        var campfires = 0
+        var EL_campfire_div = document.querySelector('#campfire_div')
+
+        var EL_grill = document.querySelector('#grill')
+        var EL_grills = document.querySelector('#grills')
+        var grills = 0
+        var EL_grill_div = document.querySelector('#grill_div')
+
+        var EL_factory = document.querySelector('#factory')
+        var EL_factorys = document.querySelector('#factorys')
+        var factorys = 0
+        var EL_factory_div = document.querySelector('#factory_div')
+
+        var EL_forest_fire = document.querySelector('#forest_fire')
+        var EL_forest_fires = document.querySelector('#forest_fires')
+        var forest_fires= 0
+        var EL_forest_fire_div = document.querySelector('#forest_fire_div')
+
+        var EL_volcano = document.querySelector('#volcano')
+        var EL_volcanos = document.querySelector('#volcanos')
+        var volcanos = 0
+        var EL_volcano_div = document.querySelector('#volcano_div')
+        
+        var EL_earths_core = document.querySelector('#earths_core')
+        var EL_earths_cores = document.querySelector('#earths_cores')
+        var earths_cores = 0
+        var EL_earths_core_div = document.querySelector('#earths_core_div')
+
+        var EL_sun = document.querySelector('#sun')
+        var EL_suns = document.querySelector('#suns')
+        var suns = 0
+        var EL_sun_div = document.querySelector('#sun_div')
+
+        var EL_bps = document.querySelector('#bps')
+        var bps = 0
+
+        EL_fire_div.style.opacity = 0.5
+        EL_pan_div.style.opacity = 0.5
+        EL_campfire_div.style.opacity = 0.5
+        EL_grill_div.style.opacity = 0.5
+        EL_factory_div.style.opacity = 0.5
+        EL_forest_fire_div.style.opacity = 0.5
+        EL_volcano_div.style.opacity = 0.5
+        EL_earths_core_div.style.opacity = 0.5
+        EL_sun_div.style.opacity = 0.5
+
+        function cook_bacon(){
+            cooked_bacon += 1
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function fire_BPS(){
+            cooked_bacon += 0.2
+            console.log(cooked_bacon)
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function fire(){
+            if (cooked_bacon >= 15){
+                cooked_bacon -= 15
+                fires += 1
+                EL_fires.innerHTML = fires + ' Fire: 15 Cooked Bacon'
+                bps += 0.2
+                EL_bps.innerHTML = 'Bacon per second: ' + Math.round(bps * 10) / 10
+                setInterval(fire_BPS, 1000)
+                bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+            }else if (cooked_bacon < 15){
+
+            }
+        }
+        function pan_BPS(){
+            cooked_bacon += 1.4
+            console.log(cooked_bacon)
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function pan(){
+            if (cooked_bacon >= 150){
+                cooked_bacon -= 150
+                pans += 1
+                EL_pans.innerHTML = pans + ' Pan: 150 Cooked Bacon'
+                bps += 1.4
+                EL_bps.innerHTML = 'Bacon per second: ' + Math.round(bps * 10) / 10
+                setInterval(pan_BPS, 1000)
+                bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+            }else if (cooked_bacon < 150){
+
+            }
+        }
+        function campfire_BPS(){
+            cooked_bacon += 13
+            console.log(cooked_bacon)
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function campfire(){
+            if (cooked_bacon >= 1200){
+                cooked_bacon -= 1200
+                campfires += 1
+                EL_campfires.innerHTML = campfires + ' Campfire: 1200 Cooked Bacon'
+                bps += 13
+                EL_bps.innerHTML = 'Bacon per second: ' + Math.round(bps * 10) / 10
+                setInterval(campfire_BPS, 1000)
+                bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+            }else if (cooked_bacon < 1200){
+
+            }
+        }
+        function grill_BPS(){
+            cooked_bacon += 52
+            console.log(cooked_bacon)
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function grill(){
+            if (cooked_bacon >= 8000){
+                cooked_bacon -= 8000
+                grills += 1
+                EL_grills.innerHTML = grills + ' Grill: 8000 Cooked Bacon'
+                bps += 52
+                EL_bps.innerHTML = 'Bacon per second: ' + Math.round(bps * 10) / 10
+                setInterval(grill_BPS, 1000)
+                bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+            }else if (cooked_bacon < 8000){
+
+            }
+        }
+        function factory_BPS(){
+            cooked_bacon += 270
+            console.log(cooked_bacon)
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function factory(){
+            if (cooked_bacon >= 60000){
+                cooked_bacon -= 60000
+                factorys += 1
+                EL_factorys.innerHTML = factorys + ' Factory: 60000 Cooked Bacon'
+                bps += 270
+                EL_bps.innerHTML = 'Bacon per second: ' + Math.round(bps * 10) / 10
+                setInterval(factory_BPS, 1000)
+                bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+            }else if (cooked_bacon < 60000){
+
+            }
+        }
+        function forest_fire_BPS(){
+            cooked_bacon += 1480
+            console.log(cooked_bacon)
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function forest_fire(){
+            if (cooked_bacon >= 400000){
+                cooked_bacon -= 400000
+                forest_fires += 1
+                EL_forest_fires.innerHTML = forest_fires + ' Forest Fire: 400000 Cooked Bacon'
+                bps += 1480
+                EL_bps.innerHTML = 'Bacon per second: ' + Math.round(bps * 10) / 10
+                setInterval(forest_fire_BPS, 1000)
+                bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+            }else if (cooked_bacon < 400000){
+
+            }
+        }
+        function volcano_BPS(){
+            cooked_bacon += 8000
+            console.log(cooked_bacon)
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function volcano(){
+            if (cooked_bacon >= 7000000){
+                cooked_bacon -= 7000000
+                volcanos += 1
+                EL_volcanos.innerHTML = volcanos + ' Volcano: 7000000 Cooked Bacon'
+                bps += 8000
+                EL_bps.innerHTML = 'Bacon per second: ' + Math.round(bps * 10) / 10
+                setInterval(volcano_BPS, 1000)
+                bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+            }else if (cooked_bacon < 7000000){
+
+            }
+        }
+        function earths_core_BPS(){
+            cooked_bacon += 46000
+            console.log(cooked_bacon)
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function earths_core(){
+            if (cooked_bacon >= 18000000){
+                cooked_bacon -= 18000000
+                earths_cores += 1
+                EL_earths_cores.innerHTML = earths_cores + ' Earths core: 18000000 Cooked Bacon'
+                bps += 46000
+                EL_bps.innerHTML = 'Bacon per second: ' + Math.round(bps * 10) / 10
+                setInterval(earths_core_BPS, 1000)
+                bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+            }else if (cooked_bacon < 18000000){
+
+            }
+        }
+        function sun_BPS(){
+            cooked_bacon += 300000
+            console.log(cooked_bacon)
+            bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+        }
+        function sun(){
+            if (cooked_bacon >= 500000000){
+                cooked_bacon -= 500000000
+                suns += 1
+                EL_suns.innerHTML = suns + ' Sun: 500000000 Cooked Bacon'
+                bps += 300000
+                EL_bps.innerHTML = 'Bacon per second: ' + Math.round(bps * 10) / 10
+                setInterval(sun_BPS, 1000)
+                bacon_counter.innerHTML = 'Cooked bacon: ' + Math.round(cooked_bacon * 10) / 10
+            }else if (cooked_bacon < 500000000){
+
+            }
+        }
+        function fire_opacity(){
+            if (cooked_bacon >= 15){
+            EL_fire_div.style.opacity = 1
+            }else if (cooked_bacon < 15){
+            EL_fire_div.style.opacity = 0.5
+            }
+        }
+        function pan_opacity(){
+            if (cooked_bacon >= 150){
+            EL_pan_div.style.opacity = 1
+            }else if (cooked_bacon < 150){
+            EL_pan_div.style.opacity = 0.5
+            }
+        }
+        function campfire_opacity(){
+            if (cooked_bacon >= 1200){
+            EL_campfire_div.style.opacity = 1
+            }else if (cooked_bacon < 1200){
+            EL_campfire_div.style.opacity = 0.5
+            }
+        }
+        function grill_opacity(){
+            if (cooked_bacon >= 8000){
+            EL_grill_div.style.opacity = 1
+            }else if (cooked_bacon < 8000){
+            EL_grill_div.style.opacity = 0.5
+            }
+        }
+        function factory_opacity(){
+            if (cooked_bacon >= 60000){
+            EL_factory_div.style.opacity = 1
+            }else if (cooked_bacon < 60000){
+            EL_factory_div.style.opacity = 0.5
+            }
+        }
+        function forest_fire_opacity(){
+            if (cooked_bacon >= 400000){
+            EL_forest_fire_div.style.opacity = 1
+            }else if (cooked_bacon < 400000){
+            EL_forest_fire_div.style.opacity = 0.5
+            }
+        }
+        function volcano_opacity(){
+            if (cooked_bacon >= 7000000){
+            EL_volcano_div.style.opacity = 1
+            }else if (cooked_bacon < 7000000){
+            EL_volcano_div.style.opacity = 0.5
+            }
+        }
+        function earths_core_opacity(){
+            if (cooked_bacon >= 18000000){
+            EL_earths_core_div.style.opacity = 1
+            }else if (cooked_bacon < 18000000){
+            EL_earths_core_div.style.opacity = 0.5
+            }
+        }
+        function sun_opacity(){
+            if (cooked_bacon >= 500000000){
+            EL_sun_div.style.opacity = 1
+            }else if (cooked_bacon < 500000000){
+            EL_sun_div.style.opacity = 0.5
+            }
+        }
+
+        setInterval(fire_opacity, 100)
+        setInterval(pan_opacity, 100)
+        setInterval(campfire_opacity, 100)
+        setInterval(grill_opacity, 100)
+        setInterval(factory_opacity, 100)
+        setInterval(forest_fire_opacity, 100)
+        setInterval(volcano_opacity, 100)
+        setInterval(earths_core_opacity, 100)
+        setInterval(sun_opacity, 100)
+
+        EL_bacon.addEventListener('click', cook_bacon)
+        EL_fire.addEventListener('click', fire)
+        EL_pan.addEventListener('click', pan)
+        EL_campfire.addEventListener('click', campfire)
+        EL_grill.addEventListener('click', grill)
+        EL_factory.addEventListener('click', factory)
+        EL_forest_fire.addEventListener('click', forest_fire)
+        EL_volcano.addEventListener('click', volcano)
+        EL_earths_core.addEventListener('click', earths_core)
+        EL_sun.addEventListener('click', sun)
+
+    </script>
     
 </body>
 </html>

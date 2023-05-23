@@ -1,6 +1,70 @@
-body {
-    background-color: rgb(163, 39, 66);
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0%;
 }
-button {
-    background-color: rgb(39, 163, 95);
+body {
+    background-image: url("bakgrunn.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.all {
+    min-height: 100%;
+}
+.content {
+    display: flex;
+    min-height: 100%;   
+}
+.bacon {
+    width: 65%;
+    height: 65%;
+}
+.header {
+    text-align: center;
+    width: 100%;
+}
+.header_h1 {
+    font-size: 50px;
+}
+.left {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: 100%;
+    width: 40%;
+}
+.right {
+    background: rgba(0, 0, 0, 0.5);
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.center {
+    min-height: 100%;
+    width: 40%;
+}
+.right {
+    min-height: 100%;
+    width: 20%;
+}
+.cookers {
+    display: flex;
+}
+
+.cooker_icons {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+}
+h1 {
+    color: white;
+}
+h2 {
+    color: white;
+}
+h3 {
+    color: white;
+}
+p {
+    color: white;
 }
