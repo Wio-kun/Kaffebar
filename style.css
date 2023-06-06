@@ -80,6 +80,7 @@ body {
 .cookers {
     display: flex;
     height: 80px;
+    display: none;
 }
 .upgrades {
     display: flex;

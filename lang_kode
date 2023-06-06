@@ -1,0 +1,9 @@
+                if (sun_up_amount < 2){
+                    sun_up_price *= 10
+                }else if (sun_up_amount < 4){
+                    sun_up_price *= 50
+                }else if (sun_up_amount < 6){
+                    sun_up_price *= 100
+                }else if (sun_up_amount < 8){
+                    sun_up_price *= 150
+                }
