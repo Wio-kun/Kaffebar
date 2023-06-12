@@ -1,9 +1,28 @@
-                if (sun_up_amount < 2){
-                    sun_up_price *= 10
-                }else if (sun_up_amount < 4){
-                    sun_up_price *= 50
-                }else if (sun_up_amount < 6){
-                    sun_up_price *= 100
-                }else if (sun_up_amount < 8){
-                    sun_up_price *= 150
-                }
+else if (amount_number == 100){
+        sun_price_hundred = sun_price
+        total_sun_hundred = 0
+        for (var t = 1; t <= amount_number; t++){
+            total_sun_hundred += sun_price_hundred
+            sun_price_hundred *= 1.15
+        }
+        shown_sun_q = total_sun_hundred
+        shown_sun_t = total_sun_hundred
+        shown_sun_b = total_sun_hundred
+        shown_sun_m = total_sun_hundred
+        if (shown_sun_q >= 1000000000000000){
+            shown_sun_q /= 1000000000000000
+            EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+        }else if (shown_sun_t >= 1000000000000){
+            shown_sun_t /= 1000000000000
+            EL_suns.innerHTML =  + ' Sun: ' + Math.round(shown_sun_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+        }else if (shown_sun_b >= 1000000000){
+            shown_sun_b /= 1000000000
+            EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_b * 1000) / 1000 + ' Billion Cooked Bacon'
+        }else if (shown_sun_m >= 1000000){
+            shown_sun_m /= 1000000
+            EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_m * 1000) / 1000 + ' Million Cooked Bacon'
+        }else if (sun_price < 1000000){
+            EL_suns.innerHTML = suns + ' Sun: ' + Math.round(total_sun_hundred * 10) / 10 + ' Cooked Bacon'
+        }
+    }
+hundred

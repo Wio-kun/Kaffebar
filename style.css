@@ -72,6 +72,10 @@ body {
     box-shadow: inset 0 0 10px black;
     padding: 10px;
 }
+.amount {
+    display: flex;
+    justify-content: space-around;
+}
 .every_upgrade {
     display: flex;
     box-shadow: inset 0 0 10px black;
@@ -98,13 +102,29 @@ body {
 }
 h1 {
     color: white;
+    text-shadow: 0 0 3px red, 0 0 5px red;
 }
 h2 {
     color: white;
+    text-shadow: 0 0 3px red, 0 0 5px red;
 }
 h3 {
     color: white;
+    text-shadow: 0 0 3px red, 0 0 5px red;
 }
 p {
     color: white;
+    text-shadow: 0 0 3px red, 0 0 5px red;
+}
+.o_t_h_div {
+    width: 32%;
+    text-align: center;
+    box-shadow: inset 0 0 10px white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+.o_t_h {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
 }

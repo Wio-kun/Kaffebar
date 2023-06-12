@@ -60,8 +60,16 @@
                             <img id="sun_up" class="upgrade_icons" src="Up/sun_up.png" alt="">
                             <img id="lightning" class="upgrade_icons" src="lightning.png" alt="">
                         </div>
-                        <div class="upgrades">
-                            
+                    </div>
+                    <div class="amount">
+                        <div id="amount_1" class="o_t_h_div">
+                            <h2 class="o_t_h">1</h2>
+                        </div>
+                        <div id="amount_2" class="o_t_h_div">
+                            <h2 class="o_t_h">10</h2>                            
+                        </div>
+                        <div id="amount_3" class="o_t_h_div">
+                            <h2 class="o_t_h">100</h2>
                         </div>
                     </div>
                     <div class="every_cooker">
@@ -121,7 +129,13 @@
         var EL_fires = document.querySelector('#fires')
         var fires = 0
         var EL_fire_div = document.querySelector('#fire_div')
+        var total_fire = 0
+        var total_fire_ten = 0
+        var total_fire_hundred = 0
+        var temp_fire = 0
         var fire_price = 15
+        var fire_price_ten = 0
+        var fire_price_hundred = 0
         var shown_fire_m = 0
         var shown_fire_b = 0
         var shown_fire_t = 0
@@ -136,7 +150,13 @@
         var EL_pans = document.querySelector('#pans')
         var pans = 0
         var EL_pan_div = document.querySelector('#pan_div')
+        var total_pan = 0
+        var total_pan_ten = 0
+        var total_pan_hundred = 0
+        var temp_pan = 0
         var pan_price = 150
+        var pan_price_ten = 0
+        var pan_price_hundred = 0
         var shown_pan_m = 0
         var shown_pan_b = 0
         var shown_pan_t = 0
@@ -151,7 +171,13 @@
         var EL_campfires = document.querySelector('#campfires')
         var campfires = 0
         var EL_campfire_div = document.querySelector('#campfire_div')
+        var total_campfire = 0
+        var total_campfire_ten = 0
+        var total_campfire_hundred = 0
+        var temp_campfire = 0
         var campfire_price = 1200
+        var campfire_price_ten = 0
+        var campfire_price_hundred = 0
         var shown_campfire_m = 0
         var shown_campfire_b = 0
         var shown_campfire_t = 0
@@ -166,7 +192,13 @@
         var EL_grills = document.querySelector('#grills')
         var grills = 0
         var EL_grill_div = document.querySelector('#grill_div')
+        var total_grill = 0
+        var total_grill_ten = 0
+        var total_grill_hundred = 0
+        var temp_grill = 0
         var grill_price = 8000
+        var grill_price_ten = 0
+        var grill_price_hundred = 0
         var shown_grill_m = 0
         var shown_grill_b = 0
         var shown_grill_t = 0
@@ -181,7 +213,13 @@
         var EL_factorys = document.querySelector('#factorys')
         var factorys = 0
         var EL_factory_div = document.querySelector('#factory_div')
+        var total_factory = 0
+        var total_factory_ten = 0
+        var total_factory_hundred = 0
+        var temp_factory = 0
         var factory_price = 60000
+        var factory_price_ten = 0
+        var factory_price_hundred = 0
         var shown_factory_m = 0
         var shown_factory_b = 0
         var shown_factory_t = 0
@@ -196,7 +234,13 @@
         var EL_ffs = document.querySelector('#ffs')
         var ffs= 0
         var EL_ff_div = document.querySelector('#ff_div')
+        var total_ff = 0
+        var total_ff_ten = 0
+        var total_ff_hundred = 0
+        var temp_ff = 0
         var ff_price = 400000
+        var ff_price_ten = 0
+        var ff_price_hundred = 0
         var shown_ff_m = 0
         var shown_ff_b = 0
         var shown_ff_t = 0
@@ -211,7 +255,13 @@
         var EL_volcanos = document.querySelector('#volcanos')
         var volcanos = 0
         var EL_volcano_div = document.querySelector('#volcano_div')
+        var total_volcano = 0
+        var total_volcano_ten = 0
+        var total_volcano_hundred = 0
+        var temp_volcano = 0
         var volcano_price = 7000000
+        var volcano_price_ten = 0
+        var volcano_price_hundred = 0
         var shown_volcano = 7000000
         var shown_volcano_b = 0
         var shown_volcano_t = 0
@@ -226,7 +276,13 @@
         var EL_ecs = document.querySelector('#ecs')
         var ecs = 0
         var EL_ec_div = document.querySelector('#ec_div')
+        var total_ec = 0
+        var total_ec_ten = 0
+        var total_ec_hundred = 0
+        var temp_ec = 0
         var ec_price = 18000000
+        var ec_price_ten = 0
+        var ec_price_hundred = 0
         var shown_ec = 18000000
         var shown_ec_b = 0
         var shown_ec_t = 0
@@ -241,7 +297,13 @@
         var EL_suns = document.querySelector('#suns')
         var suns = 0
         var EL_sun_div = document.querySelector('#sun_div')
+        var total_sun = 0
+        var total_sun_ten = 0
+        var total_sun_hundred = 0
+        var temp_sun = 0
         var sun_price = 500000000
+        var sun_price_ten = 0
+        var sun_price_hundred = 0
         var shown_sun = 500000000
         var shown_sun_b = 0
         var shown_sun_t = 0
@@ -263,6 +325,10 @@
         var shown_bps_b
         var shown_bps_t
         var EL_title = document.querySelector('#title')
+        var amount_number = 1
+        var EL_amount_1 = document.querySelector('#amount_1')
+        var EL_amount_2 = document.querySelector('#amount_2')
+        var EL_amount_3 = document.querySelector('#amount_3')
 
         EL_fire_div.style.display = 'Flex'
 
@@ -281,13 +347,13 @@
         EL_lightningstrike.style.display = 'None'
 
         function cook_bacon(){
-            cooked_bacon += 100000000000000
+            cooked_bacon += 100000
             if (lightning_strike == true){
                 var tall = Math.floor(Math.random() * 15);
                 if (tall == 6){
                     EL_lightningstrike.style.display = 'Block'
                     cooked_bacon += 87000
-                    setInterval(lightning_gone, 2000)
+                    setTimeout(lightning_gone, 2000)
                 }
             }
         }
@@ -351,320 +417,237 @@
         }
         function fire_BPS(){
             cooked_bacon += fire_income_prs
-            console.log(Math.round(cooked_bacon*10) / 10)
         }
         function fire(){
-            if (cooked_bacon >= fire_price){
-                cooked_bacon -= fire_price
-                fires += 1
-                fire_price *= 1.15
-                console.log(fire_price)
-                if (fire_price >= 1000000000000000){
-                    shown_fire_q = fire_price
-                    shown_fire_q /= 1000000000000000
-                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
-                }else if (_price >= 1000000000000){
-                    shown_fire_t = _price
-                    shown_fire_t /= 1000000000000
-                    EL_fires.innerHTML =  + ' Fire: ' + Math.round(shown_fire_t * 1000) / 1000 + ' Trillion Cooked Bacon'
-                }else if (fire_price >= 1000000000){
-                    shown_fire_b = fire_price
-                    shown_fire_b /= 1000000000
-                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_b * 1000) / 1000 + ' Billion Cooked Bacon'
-                }else if (fire_price >= 1000000){
-                    shown_fire_m = fire_price
-                    shown_fire_m /= 1000000
-                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_m * 1000) / 1000 + ' Million Cooked Bacon'
-                }else if (fire_price < 1000000){
-                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(fire_price * 10) / 10 + ' Cooked Bacon'
+            temp_fire = fire_price
+            total_fire = 0
+            for (var i = 1; i <= amount_number; i++){
+                total_fire += temp_fire
+                temp_fire *= 1.15
+            }
+            if (cooked_bacon >= total_fire){
+                fires += amount_number
+                cooked_bacon -= total_fire
+                fire_price = temp_fire
+                for (var b = 1; b <= amount_number; b++){
+                    bps += fire_income_prs
+                    fire_income += fire_income_prs
                 }
-                bps += fire_income_prs
-                fire_income += fire_income_prs
                 setInterval(fire_BPS, 1000)
+                fire_price = temp_fire
                 if (pans < 1){
                     document.body.style.backgroundImage = "url('Bg/fire_bg.jpg')"
                 }
             }
+            fire_amount_counter()
         }
         function pan_BPS(){
             cooked_bacon += pan_income_prs
-            console.log(cooked_bacon)
         }
         function pan(){
-            if (cooked_bacon >= pan_price){
-                cooked_bacon -= pan_price
-                pans += 1
-                pan_price *= 1.15
-                if (pan_price >= 1000000000000000){
-                    shown_pan_q = pan_price
-                    shown_pan_q /= 1000000000000000
-                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
-                }else if (pan_price >= 1000000000000){
-                    shown_pan_t = _price
-                    shown_pan_t /= 1000000000000
-                    EL_pans.innerHTML =  + ' Pan: ' + Math.round(shown__t * 1000) / 1000 + ' Trillion Cooked Bacon'
-                }else if (pan_price >= 1000000000){
-                    shown_pan_b = pan_price
-                    shown_pan_b /= 1000000000
-                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_b * 1000) / 1000 + ' Billion Cooked Bacon'
-                }else if (pan_price >= 1000000){
-                    shown_pan_m = pan_price
-                    shown_pan_m /= 1000000
-                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_m * 1000) / 1000 + ' Million Cooked Bacon'
-                }else if (pan_price < 1000000){
-                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(pan_price * 10) / 10 + ' Cooked Bacon'
+            temp_pan = pan_price
+            total_pan = 0
+            for (var i = 1; i <= amount_number; i++){
+                total_pan += temp_pan
+                temp_pan *= 1.15
+            }
+            if (cooked_bacon >= total_pan){
+                pans += amount_number
+                cooked_bacon -= total_pan
+                pan_price = temp_pan
+                for (var b = 1; b <= amount_number; b++){
+                    bps += pan_income_prs
+                    pan_income += pan_income_prs
                 }
-                bps += pan_income_prs
-                pan_income += pan_income_prs
                 setInterval(pan_BPS, 1000)
-                if (campfires < 1){
+                pan_price = temp_pan
+                if (pans < 1){
                     document.body.style.backgroundImage = "url('Bg/pan_bg.jpg')"
                 }
             }
+            pan_amount_counter()
         }
         function campfire_BPS(){
             cooked_bacon += campfire_income_prs
-            console.log(cooked_bacon)
         }
         function campfire(){
-            if (cooked_bacon >= campfire_price){
-                cooked_bacon -= campfire_price
-                campfires += 1
-                campfire_price *= 1.15
-                if (campfire_price >= 1000000000000000){
-                    shown_campfire_q = campfire_price
-                    shown_campfire_q /= 1000000000000000
-                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
-                }else if (campfire_price >= 1000000000000){
-                    shown_campfire_t = _price
-                    shown_campfire_t /= 1000000000000
-                    EL_campfires.innerHTML =  + ' Campfire: ' + Math.round(shown__t * 1000) / 1000 + ' Trillion Cooked Bacon'
-                }else if (campfire_price >= 1000000000){
-                    shown_campfire_b = campfire_price
-                    shown_campfire_b /= 1000000000
-                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_b * 1000) / 1000 + ' Billion Cooked Bacon'
-                }else if (campfire_price >= 1000000){
-                    shown_campfire_m = campfire_price
-                    shown_campfire_m /= 1000000
-                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_m * 1000) / 1000 + ' Million Cooked Bacon'
-                }else if (fire_price < 1000000){
-                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(campfire_price * 10) / 10 + ' Cooked Bacon'
+            temp_campfire = campfire_price
+            total_campfire = 0
+            for (var i = 1; i <= amount_number; i++){
+                total_campfire += temp_campfire
+                temp_campfire *= 1.15
+            }
+            if (cooked_bacon >= total_campfire){
+                campfires += amount_number
+                cooked_bacon -= total_campfire
+                campfire_price = temp_campfire
+                for (var b = 1; b <= amount_number; b++){
+                    bps += campfire_income_prs
+                    campfire_income += campfire_income_prs
                 }
-                bps += campfire_income_prs
-                campfire_income += campfire_income_prs
                 setInterval(campfire_BPS, 1000)
-                if (grills < 1){
+                campfire_price = temp_campfire
+                if (campfires < 1){
                     document.body.style.backgroundImage = "url('Bg/campfire_bg.png')"
                 }
             }
+            campfire_amount_counter()
         }
         function grill_BPS(){
             cooked_bacon += grill_income_prs
-            console.log(cooked_bacon)
         }
         function grill(){
-            if (cooked_bacon >= grill_price){
-                cooked_bacon -= grill_price
-                grills += 1
-                grill_price *= 1.15
-                if (grill_price >= 1000000000000000){
-                    shown_grill_q = grill_price
-                    shown_grill_q /= 1000000000000000
-                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
-                }else if (grill_price >= 1000000000000){
-                    shown_grill_t = _price
-                    shown_grill_t /= 1000000000000
-                    EL_grills.innerHTML =  + ' Grill: ' + Math.round(shown__t * 1000) / 1000 + ' Trillion Cooked Bacon'
-                }else if (grill_price >= 1000000000){
-                    shown_grill_b = grill_price
-                    shown_grill_b /= 1000000000
-                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_b * 1000) / 1000 + ' Billion Cooked Bacon'
-                }else if (grill_price >= 1000000){
-                    shown_grill_m = grill_price
-                    shown_grill_m /= 1000000
-                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_m * 1000) / 1000 + ' Million Cooked Bacon'
-                }else if (grill_price < 1000000){
-                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(grill_price * 10) / 10 + ' Cooked Bacon'
+            temp_grill = grill_price
+            total_grill = 0
+            for (var i = 1; i <= amount_number; i++){
+                total_grill += temp_grill
+                temp_grill *= 1.15
+            }
+            if (cooked_bacon >= total_grill){
+                grills += amount_number
+                cooked_bacon -= total_grill
+                grill_price = temp_grill
+                for (var b = 1; b <= amount_number; b++){
+                    bps += grill_income_prs
+                    grill_income += grill_income_prs
                 }
-                bps += grill_income_prs
-                grill_income += grill_income_prs
                 setInterval(grill_BPS, 1000)
-                if (factorys < 1){
+                grill_price = temp_grill
+                if (grills < 1){
                     document.body.style.backgroundImage = "url('Bg/grill_bg.png')"
                 }
             }
+            grill_amount_counter()
         }
         function factory_BPS(){
             cooked_bacon += factory_income_prs
-            console.log(cooked_bacon)
         }
         function factory(){
-            if (cooked_bacon >= factory_price){
-                cooked_bacon -= factory_price
-                factorys += 1
-                factory_price *= 1.15
-                if (factory_price >= 1000000000000000){
-                    shown_factory_q = factory_price
-                    shown_factory_q /= 1000000000000000
-                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
-                }else if (factory_price >= 1000000000000){
-                    shown_factory_t = _price
-                    shown_factory_t /= 1000000000000
-                    EL_factorys.innerHTML =  + ' Factory: ' + Math.round(shown__t * 1000) / 1000 + ' Trillion Cooked Bacon'
-                }else if (factory_price >= 1000000000){
-                    shown_factory_b = factory_price
-                    shown_factory_b /= 1000000000
-                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_b * 1000) / 1000 + ' Billion Cooked Bacon'
-                }else if (factory_price >= 1000000){
-                    shown_factory_m = factory_price
-                    shown_factory_m /= 1000000
-                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_m * 1000) / 1000 + ' Million Cooked Bacon'
-                }else if (factory_price < 1000000){
-                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(factory_price * 10) / 10 + ' Cooked Bacon'
+            temp_factory = factory_price
+            total_factory = 0
+            for (var i = 1; i <= amount_number; i++){
+                total_factory += temp_factory
+                temp_factory *= 1.15
+            }
+            if (cooked_bacon >= total_factory){
+                factorys += amount_number
+                cooked_bacon -= total_factory
+                factory_price = temp_factory
+                for (var b = 1; b <= amount_number; b++){
+                    bps += factory_income_prs
+                    factory_income += factory_income_prs
                 }
-                bps += factory_income_prs
-                factory_income += factory_income_prs
                 setInterval(factory_BPS, 1000)
-                if (ffs < 1){
+                factory_price = temp_factory
+                if (factorys < 1){
                     document.body.style.backgroundImage = "url('Bg/factory_bg.jpg')"
                 }
             }
+            factory_amount_counter()
         }
         function ff_BPS(){
             cooked_bacon += ff_income_prs
-            console.log(cooked_bacon)
         }
         function ff(){
-            if (cooked_bacon >= ff_price){
-                cooked_bacon -= ff_price
-                ffs += 1
-                ff_price *= 1.15
-                if (ff_price >= 1000000000000000){
-                    shown_ff_q = ff_price
-                    shown_ff_q /= 1000000000000000
-                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
-                }else if (ff_price >= 1000000000000){
-                    shown_ff_t = _price
-                    shown_ff_t /= 1000000000000
-                    EL_ffs.innerHTML =  + ' Forest Fire: ' + Math.round(shown__t * 1000) / 1000 + ' Trillion Cooked Bacon'
-                }else if (ff_price >= 1000000000){
-                    shown_ff_b = ff_price
-                    shown_ff_b /= 1000000000
-                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_b * 1000) / 1000 + ' Billion Cooked Bacon'
-                }else if (ff_price >= 1000000){
-                    shown_ff_m = ff_price
-                    shown_ff_m /= 1000000
-                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_m * 1000) / 1000 + ' Million Cooked Bacon'
-                }else if (ff_price < 1000000){
-                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(ff_price * 10) / 10 + ' Cooked Bacon'
+            temp_ff = ff_price
+            total_ff = 0
+            for (var i = 1; i <= amount_number; i++){
+                total_ff += temp_ff
+                temp_ff *= 1.15
+            }
+            if (cooked_bacon >= total_ff){
+                ffs += amount_number
+                cooked_bacon -= total_ff
+                ff_price = temp_ff
+                for (var b = 1; b <= amount_number; b++){
+                    bps += ff_income_prs
+                    ff_income += ff_income_prs
                 }
-                bps += ff_income_prs
-                ff_income += ff_income_prs
                 setInterval(ff_BPS, 1000)
-                if (volcanos < 1){
+                ff_price = temp_ff
+                if (ffs < 1){
                     document.body.style.backgroundImage = "url('Bg/ff_bg.jpg')"
                 }
             }
+            ff_amount_counter()
         }
         function volcano_BPS(){
             cooked_bacon += volcano_income_prs
-            console.log(cooked_bacon)
         }
         function volcano(){
-            if (cooked_bacon >= volcano_price){
-                cooked_bacon -= volcano_price
-                volcanos += 1
-                volcano_price *= 1.15
-                if (volcano_price >= 1000000000000000){
-                    shown_volcano_q = volcano_price
-                    shown_volcano_q /= 1000000000000000
-                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
-                }else if (volcano_price >= 1000000000000){
-                    shown_volcano_t = _price
-                    shown_volcano_t /= 1000000000000
-                    EL_volcanos.innerHTML =  + ' Volcano: ' + Math.round(shown__t * 1000) / 1000 + ' Trillion Cooked Bacon'
-                }else if (volcano_price >= 1000000000){
-                    shown_volcano_b = volcano_price
-                    shown_volcano_b /= 1000000000
-                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_b * 1000) / 1000 + ' Billion Cooked Bacon'
-                }else if (volcano_price >= 1000000){
-                    shown_volcano = volcano_price
-                    shown_volcano /= 1000000
-                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano * 1000) / 1000 + ' Million Cooked Bacon'
+            temp_volcano = volcano_price
+            total_volcano = 0
+            for (var i = 1; i <= amount_number; i++){
+                total_volcano += temp_volcano
+                temp_volcano *= 1.15
+            }
+            if (cooked_bacon >= total_volcano){
+                volcanos += amount_number
+                cooked_bacon -= total_volcano
+                volcano_price = temp_volcano
+                for (var b = 1; b <= amount_number; b++){
+                    bps += volcano_income_prs
+                    volcano_income += volcano_income_prs
                 }
-                bps += volcano_income_prs
-                volcano_income += volcano_income_prs
                 setInterval(volcano_BPS, 1000)
-                if (ecs < 1){
+                volcano_price = temp_volcano
+                if (volcanos < 1){
                     document.body.style.backgroundImage = "url('Bg/volcano_bg.png')"
                 }
             }
+            volcano_amount_counter()
         }
         function ec_BPS(){
             cooked_bacon += ec_income_prs
-            console.log(cooked_bacon)
         }
         function ec(){
-            if (cooked_bacon >= ec_price){
-                cooked_bacon -= ec_price
-                ecs += 1
-                ec_price *= 1.15
-                if (ec_price >= 1000000000000000){
-                    shown_ec_q = ec_price
-                    shown_ec_q /= 1000000000000000
-                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
-                }else if (ec_price >= 1000000000000){
-                    shown_ec_t = _price
-                    shown_ec_t /= 1000000000000
-                    EL_ecs.innerHTML =  + ' Earths Core: ' + Math.round(shown__t * 1000) / 1000 + ' Trillion Cooked Bacon'
-                }else if (ec_price >= 1000000000){
-                    shown_ec_b = ec_price
-                    shown_ec_b /= 1000000000
-                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_b * 1000) / 1000 + ' Billion Cooked Bacon'
-                }else if (ec_price >= 1000000){
-                    shown_ec = ec_price
-                    shown_ec /= 1000000
-                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec * 1000) / 1000 + ' Million Cooked Bacon'
+            temp_ec = ec_price
+            total_ec = 0
+            for (var i = 1; i <= amount_number; i++){
+                total_ec += temp_ec
+                temp_ec *= 1.15
+            }
+            if (cooked_bacon >= total_ec){
+                ecs += amount_number
+                cooked_bacon -= total_ec
+                ec_price = temp_ec
+                for (var b = 1; b <= amount_number; b++){
+                    bps += ec_income_prs
+                    ec_income += ec_income_prs
                 }
-                bps += ec_income_prs
-                ec_income += ec_income_prs
                 setInterval(ec_BPS, 1000)
-                if (suns < 1){
+                ec_price = temp_ec
+                if (ecs < 1){
                     document.body.style.backgroundImage = "url('Bg/ec_bg.png')"
                 }
             }
+            ec_amount_counter()
         }
         function sun_BPS(){
             cooked_bacon += sun_income_prs
-            console.log(cooked_bacon)
         }
         function sun(){
-            if (cooked_bacon >= sun_price){
-                cooked_bacon -= sun_price
-                suns += 1
-                sun_price *= 1.15
-                if (sun_price >= 1000000000000000){
-                    shown_sun_q = sun_price
-                    shown_sun_q /= 1000000000000000
-                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
-                }else if (sun_price >= 1000000000000){
-                    shown_sun_t = _price
-                    shown_sun_t /= 1000000000000
-                    EL_suns.innerHTML =  + ' Sun: ' + Math.round(shown__t * 1000) / 1000 + ' Trillion Cooked Bacon'
-                }else if (sun_price >= 1000000000){
-                    shown_sun_b = sun_price
-                    shown_sun_b /= 1000000000
-                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_b * 1000) / 1000 + ' Billion Cooked Bacon'
-                }else if (sun_price < 1000000000){
-                    shown_sun = sun_price
-                    shown_sun /= 1000000
-                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun * 1000) / 1000 + ' Million Cooked Bacon'
-                }
-                bps += sun_income_prs
-                sun_income += sun_income_prs
-                setInterval(sun_BPS, 1000)
-                document.body.style.backgroundImage = "url('Bg/sun_bg.png')"
+            temp_sun = sun_price
+            total_sun = 0
+            for (var i = 1; i <= amount_number; i++){
+                total_sun += temp_sun
+                temp_sun *= 1.15
             }
+            if (cooked_bacon >= total_sun){
+                suns += amount_number
+                cooked_bacon -= total_sun
+                sun_price = temp_sun
+                for (var b = 1; b <= amount_number; b++){
+                    bps += sun_income_prs
+                    sun_income += sun_income_prs
+                }
+                setInterval(sun_BPS, 1000)
+                sun_price = temp_sun
+                if (suns < 1){
+                    document.body.style.backgroundImage = "url('Bg/sun_bg.png')"
+                }
+            }
+            sun_amount_counter()
         }
         function fire_up(){
             if (cooked_bacon >= fire_up_price){
@@ -845,50 +828,176 @@
             }
         }
         function opacity (){
-            if (cooked_bacon >= fire_price){ //fire
-                EL_fire_div.style.opacity = 1
-            }else if (cooked_bacon < fire_price){
-                EL_fire_div.style.opacity = 0.5
+            if (amount_number == 1){ //fire
+                if (cooked_bacon >= fire_price){
+                    EL_fire_div.style.opacity = 1
+                }else if (cooked_bacon < fire_price){
+                    EL_fire_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 10){
+                if (cooked_bacon >= total_fire_ten){
+                    EL_fire_div.style.opacity = 1
+                }else if (cooked_bacon < total_fire_ten){
+                    EL_fire_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 100){
+                if (cooked_bacon >= total_fire_hundred){
+                    EL_fire_div.style.opacity = 1
+                }else if (cooked_bacon < total_fire_hundred){
+                    EL_fire_div.style.opacity = 0.5
+                }
             }
-            if (cooked_bacon >= pan_price){ //pan
-                EL_pan_div.style.opacity = 1
-            }else if (cooked_bacon < pan_price){
-                EL_pan_div.style.opacity = 0.5
+            if (amount_number == 1){ //pan
+                if (cooked_bacon >= pan_price){
+                    EL_pan_div.style.opacity = 1
+                }else if (cooked_bacon < pan_price){
+                    EL_pan_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 10){
+                if (cooked_bacon >= total_pan_ten){
+                    EL_pan_div.style.opacity = 1
+                }else if (cooked_bacon < total_pan_ten){
+                    EL_pan_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 100){
+                if (cooked_bacon >= total_pan_hundred){
+                    EL_pan_div.style.opacity = 1
+                }else if (cooked_bacon < total_pan_hundred){
+                    EL_pan_div.style.opacity = 0.5
+                }
             }
-            if (cooked_bacon >= campfire_price){ //campfire
-                EL_campfire_div.style.opacity = 1
-            }else if (cooked_bacon < campfire_price){
-                EL_campfire_div.style.opacity = 0.5
+            if (amount_number == 1){ //campfire
+                if (cooked_bacon >= campfire_price){
+                    EL_campfire_div.style.opacity = 1
+                }else if (cooked_bacon < campfire_price){
+                    EL_campfire_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 10){
+                if (cooked_bacon >= total_campfire_ten){
+                    EL_campfire_div.style.opacity = 1
+                }else if (cooked_bacon < total_campfire_ten){
+                    EL_campfire_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 100){
+                if (cooked_bacon >= total_campfire_hundred){
+                    EL_campfire_div.style.opacity = 1
+                }else if (cooked_bacon < total_campfire_hundred){
+                    EL_campfire_div.style.opacity = 0.5
+                }
             }
-            if (cooked_bacon >= grill_price){ //grill
-                EL_grill_div.style.opacity = 1
-            }else if (cooked_bacon < grill_price){
-                EL_grill_div.style.opacity = 0.5
+            if (amount_number == 1){ //grill
+                if (cooked_bacon >= grill_price){
+                    EL_grill_div.style.opacity = 1
+                }else if (cooked_bacon < grill_price){
+                    EL_grill_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 10){
+                if (cooked_bacon >= total_grill_ten){
+                    EL_grill_div.style.opacity = 1
+                }else if (cooked_bacon < total_grill_ten){
+                    EL_grill_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 100){
+                if (cooked_bacon >= total_grill_hundred){
+                    EL_grill_div.style.opacity = 1
+                }else if (cooked_bacon < total_grill_hundred){
+                    EL_grill_div.style.opacity = 0.5
+                }
             }
-            if (cooked_bacon >= factory_price){ //factory
-                EL_factory_div.style.opacity = 1
-            }else if (cooked_bacon < factory_price){
-                EL_factory_div.style.opacity = 0.5
+            if (amount_number == 1){ //factory
+                if (cooked_bacon >= factory_price){
+                    EL_factory_div.style.opacity = 1
+                }else if (cooked_bacon < factory_price){
+                    EL_factory_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 10){
+                if (cooked_bacon >= total_factory_ten){
+                    EL_factory_div.style.opacity = 1
+                }else if (cooked_bacon < total_factory_ten){
+                    EL_factory_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 100){
+                if (cooked_bacon >= total_factory_hundred){
+                    EL_factory_div.style.opacity = 1
+                }else if (cooked_bacon < total_factory_hundred){
+                    EL_factory_div.style.opacity = 0.5
+                }
             }
-            if (cooked_bacon >= ff_price){ //forest fire
-                EL_ff_div.style.opacity = 1
-            }else if (cooked_bacon < ff_price){
-                EL_ff_div.style.opacity = 0.5
+            if (amount_number == 1){ //forest fire
+                if (cooked_bacon >= ff_price){
+                    EL_ff_div.style.opacity = 1
+                }else if (cooked_bacon < ff_price){
+                    EL_ff_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 10){
+                if (cooked_bacon >= total_ff_ten){
+                    EL_ff_div.style.opacity = 1
+                }else if (cooked_bacon < total_ff_ten){
+                    EL_ff_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 100){
+                if (cooked_bacon >= total_ff_hundred){
+                    EL_ff_div.style.opacity = 1
+                }else if (cooked_bacon < total_ff_hundred){
+                    EL_ff_div.style.opacity = 0.5
+                }
             }
-            if (cooked_bacon >= volcano_price){ //volcano
-                EL_volcano_div.style.opacity = 1
-            }else if (cooked_bacon < volcano_price){
-                EL_volcano_div.style.opacity = 0.5
+            if (amount_number == 1){ //volcano
+                if (cooked_bacon >= volcano_price){
+                    EL_volcano_div.style.opacity = 1
+                }else if (cooked_bacon < volcano_price){
+                    EL_volcano_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 10){
+                if (cooked_bacon >= total_volcano_ten){
+                    EL_volcano_div.style.opacity = 1
+                }else if (cooked_bacon < total_volcano_ten){
+                    EL_volcano_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 100){
+                if (cooked_bacon >= total_volcano_hundred){
+                    EL_volcano_div.style.opacity = 1
+                }else if (cooked_bacon < total_volcano_hundred){
+                    EL_volcano_div.style.opacity = 0.5
+                }
             }
-            if (cooked_bacon >= ec_price){ //earth's core
-                EL_ec_div.style.opacity = 1
-            }else if (cooked_bacon < ec_price){
-                EL_ec_div.style.opacity = 0.5
+            if (amount_number == 1){ //earth's core
+                if (cooked_bacon >= ec_price){
+                    EL_ec_div.style.opacity = 1
+                }else if (cooked_bacon < ec_price){
+                    EL_ec_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 10){
+                if (cooked_bacon >= total_ec_ten){
+                    EL_ec_div.style.opacity = 1
+                }else if (cooked_bacon < total_ec_ten){
+                    EL_ec_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 100){
+                if (cooked_bacon >= total_ec_hundred){
+                    EL_ec_div.style.opacity = 1
+                }else if (cooked_bacon < total_ec_hundred){
+                    EL_ec_div.style.opacity = 0.5
+                }
             }
-            if (cooked_bacon >= sun_price){ //sun
-                EL_sun_div.style.opacity = 1
-            }else if (cooked_bacon < sun_price){
-                EL_sun_div.style.opacity = 0.5
+            if (amount_number == 1){ //sun
+                if (cooked_bacon >= sun_price){
+                    EL_sun_div.style.opacity = 1
+                }else if (cooked_bacon < sun_price){
+                    EL_sun_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 10){
+                if (cooked_bacon >= total_sun_ten){
+                    EL_sun_div.style.opacity = 1
+                }else if (cooked_bacon < total_sun_ten){
+                    EL_sun_div.style.opacity = 0.5
+                }
+            }else if (amount_number == 100){
+                if (cooked_bacon >= total_sun_hundred){
+                    EL_sun_div.style.opacity = 1
+                }else if (cooked_bacon < total_sun_hundred){
+                    EL_sun_div.style.opacity = 0.5
+                }
             }
             if (cooked_bacon >= fire_up_price){ //fire uppgrade
                 EL_fire_up.style.opacity = 1
@@ -1170,6 +1279,717 @@
                 }
             }
         }
+        function amount_1(){
+            amount_number = 1
+            fire_amount_counter()
+            pan_amount_counter()
+            campfire_amount_counter()
+            grill_amount_counter()
+            factory_amount_counter()
+            ff_amount_counter()
+            volcano_amount_counter()
+            ec_amount_counter()
+            sun_amount_counter()
+        }
+        function amount_2(){
+            amount_number = 10
+            fire_amount_counter()
+            pan_amount_counter()
+            campfire_amount_counter()
+            grill_amount_counter()
+            factory_amount_counter()
+            ff_amount_counter()
+            volcano_amount_counter()
+            ec_amount_counter()
+            sun_amount_counter()
+        }
+        function amount_3(){
+            amount_number = 100
+            fire_amount_counter()
+            pan_amount_counter()
+            campfire_amount_counter()
+            grill_amount_counter()
+            factory_amount_counter()
+            ff_amount_counter()
+            volcano_amount_counter()
+            ec_amount_counter()
+            sun_amount_counter()
+        }
+        function fire_amount_counter(){
+            if (amount_number == 1){
+                shown_fire_q = fire_price
+                shown_fire_t = fire_price
+                shown_fire_b = fire_price
+                shown_fire_m = fire_price
+                if (fire_price >= 1000000000000000){
+                    shown_fire_q /= 1000000000000000
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (fire_price >= 1000000000000){
+                    shown_fire_t /= 1000000000000
+                    EL_fires.innerHTML =  + ' Fire: ' + Math.round(shown_fire_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (fire_price >= 1000000000){
+                    shown_fire_b /= 1000000000
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (fire_price >= 1000000){
+                    shown_fire_m /= 1000000
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (fire_price < 1000000){
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(fire_price * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 10){
+                fire_price_ten = fire_price
+                total_fire_ten = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_fire_ten += fire_price_ten
+                    fire_price_ten *= 1.15
+                }
+                shown_fire_q = total_fire_ten
+                shown_fire_t = total_fire_ten
+                shown_fire_b = total_fire_ten
+                shown_fire_m = total_fire_ten
+                if (shown_fire_q >= 1000000000000000){
+                    shown_fire_q /= 1000000000000000
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_fire_t >= 1000000000000){
+                    shown_fire_t /= 1000000000000
+                    EL_fires.innerHTML =  + ' Fire: ' + Math.round(shown_fire_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_fire_b >= 1000000000){
+                    shown_fire_b /= 1000000000
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_fire_m >= 1000000){
+                    shown_fire_m /= 1000000
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (fire_price < 1000000){
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(total_fire_ten * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 100){
+                fire_price_hundred = fire_price
+                total_fire_hundred = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_fire_hundred += fire_price_hundred
+                    fire_price_hundred *= 1.15
+                }
+                shown_fire_q = total_fire_hundred
+                shown_fire_t = total_fire_hundred
+                shown_fire_b = total_fire_hundred
+                shown_fire_m = total_fire_hundred
+                if (shown_fire_q >= 1000000000000000){
+                    shown_fire_q /= 1000000000000000
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_fire_t >= 1000000000000){
+                    shown_fire_t /= 1000000000000
+                    EL_fires.innerHTML =  + ' Fire: ' + Math.round(shown_fire_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_fire_b >= 1000000000){
+                    shown_fire_b /= 1000000000
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_fire_m >= 1000000){
+                    shown_fire_m /= 1000000
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(shown_fire_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (fire_price < 1000000){
+                    EL_fires.innerHTML = fires + ' Fire: ' + Math.round(total_fire_hundred * 10) / 10 + ' Cooked Bacon'
+                }
+            }
+        }
+        function pan_amount_counter(){
+            if (amount_number == 1){
+                shown_pan_q = pan_price
+                shown_pan_t = pan_price
+                shown_pan_b = pan_price
+                shown_pan_m = pan_price
+                if (pan_price >= 1000000000000000){
+                    shown_pan_q /= 1000000000000000
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (pan_price >= 1000000000000){
+                    shown_pan_t /= 1000000000000
+                    EL_pans.innerHTML =  + ' Pan: ' + Math.round(shown_pan_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (pan_price >= 1000000000){
+                    shown_pan_b /= 1000000000
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (pan_price >= 1000000){
+                    shown_pan_m /= 1000000
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (pan_price < 1000000){
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(pan_price * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 10){
+                pan_price_ten = pan_price
+                total_pan_ten = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_pan_ten += pan_price_ten
+                    pan_price_ten *= 1.15
+                }
+                shown_pan_q = total_pan_ten
+                shown_pan_t = total_pan_ten
+                shown_pan_b = total_pan_ten
+                shown_pan_m = total_pan_ten
+                if (shown_pan_q >= 1000000000000000){
+                    shown_pan_q /= 1000000000000000
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_pan_t >= 1000000000000){
+                    shown_pan_t /= 1000000000000
+                    console.log(shown_pan_t)
+                    EL_pans.innerHTML =  + ' Pan: ' + Math.round(shown_pan_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_pan_b >= 1000000000){
+                    shown_pan_b /= 1000000000
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_pan_m >= 1000000){
+                    shown_pan_m /= 1000000
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (pan_price < 1000000){
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(total_pan_ten * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 100){
+                pan_price_hundred = pan_price
+                total_pan_hundred = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_pan_hundred += pan_price_hundred
+                    pan_price_hundred *= 1.15
+                }
+                shown_pan = total_pan_hundred
+                if (shown_pan_q >= 1000000000000000){
+                    shown_pan_q /= 1000000000000000
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_pan >= 1000000000000){
+                    shown_pan /= 1000000000000
+                    console.log("var is: " + shown_pan_t)
+                    EL_pans.innerHTML =  + ' Pan: ' + Math.round(shown_pan_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_pan_b >= 1000000000){
+                    shown_pan_b /= 1000000000
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_pan_m >= 1000000){
+                    shown_pan_m /= 1000000
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(shown_pan_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (pan_price < 1000000){
+                    EL_pans.innerHTML = pans + ' Pan: ' + Math.round(total_pan_hundred * 10) / 10 + ' Cooked Bacon'
+                }
+            }
+        }
+        function campfire_amount_counter(){
+            if (amount_number == 1){
+                shown_campfire_q = campfire_price
+                shown_campfire_t = campfire_price
+                shown_campfire_b = campfire_price
+                shown_campfire_m = campfire_price
+                if (campfire_price >= 1000000000000000){
+                    shown_campfire_q /= 1000000000000000
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (campfire_price >= 1000000000000){
+                    shown_campfire_t /= 1000000000000
+                    EL_campfires.innerHTML =  + ' Campfire: ' + Math.round(shown_campfire_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (campfire_price >= 1000000000){
+                    shown_campfire_b /= 1000000000
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (campfire_price >= 1000000){
+                    shown_campfire_m /= 1000000
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (campfire_price < 1000000){
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(campfire_price * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 10){
+                campfire_price_ten = campfire_price
+                total_campfire_ten = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_campfire_ten += campfire_price_ten
+                    campfire_price_ten *= 1.15
+                }
+                shown_campfire_q = total_campfire_ten
+                shown_campfire_t = total_campfire_ten
+                shown_campfire_b = total_campfire_ten
+                shown_campfire_m = total_campfire_ten
+                if (shown_campfire_q >= 1000000000000000){
+                    shown_campfire_q /= 1000000000000000
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_campfire_t >= 1000000000000){
+                    shown_campfire_t /= 1000000000000
+                    EL_campfires.innerHTML =  + ' Campfire: ' + Math.round(shown_campfire_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_campfire_b >= 1000000000){
+                    shown_campfire_b /= 1000000000
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_campfire_m >= 1000000){
+                    shown_campfire_m /= 1000000
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (campfire_price < 1000000){
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(total_campfire_ten * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 100){
+                campfire_price_hundred = campfire_price
+                total_campfire_hundred = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_campfire_hundred += campfire_price_hundred
+                    campfire_price_hundred *= 1.15
+                }
+                shown_campfire_q = total_campfire_hundred
+                shown_campfire_t = total_campfire_hundred
+                shown_campfire_b = total_campfire_hundred
+                shown_campfire_m = total_campfire_hundred
+                if (shown_campfire_q >= 1000000000000000){
+                    shown_campfire_q /= 1000000000000000
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_campfire_t >= 1000000000000){
+                    shown_campfire_t /= 1000000000000
+                    console.log("campfire is: " + shown_campfire_t)
+                    EL_campfires.innerHTML =  + ' Campfire: ' + Math.round(shown_campfire_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_campfire_b >= 1000000000){
+                    shown_campfire_b /= 1000000000
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_campfire_m >= 1000000){
+                    shown_campfire_m /= 1000000
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(shown_campfire_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (campfire_price < 1000000){
+                    EL_campfires.innerHTML = campfires + ' Campfire: ' + Math.round(total_campfire_hundred * 10) / 10 + ' Cooked Bacon'
+                }
+            }
+        }
+        function grill_amount_counter(){
+            if (amount_number == 1){
+                shown_grill_q = grill_price
+                shown_grill_t = grill_price
+                shown_grill_b = grill_price
+                shown_grill_m = grill_price
+                if (grill_price >= 1000000000000000){
+                    shown_grill_q /= 1000000000000000
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (grill_price >= 1000000000000){
+                    shown_grill_t /= 1000000000000
+                    EL_grills.innerHTML =  + ' Grill: ' + Math.round(shown_grill_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (grill_price >= 1000000000){
+                    shown_grill_b /= 1000000000
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (grill_price >= 1000000){
+                    shown_grill_m /= 1000000
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (grill_price < 1000000){
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(grill_price * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 10){
+                grill_price_ten = grill_price
+                total_grill_ten = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_grill_ten += grill_price_ten
+                    grill_price_ten *= 1.15
+                }
+                shown_grill_q = total_grill_ten
+                shown_grill_t = total_grill_ten
+                shown_grill_b = total_grill_ten
+                shown_grill_m = total_grill_ten
+                if (shown_grill_q >= 1000000000000000){
+                    shown_grill_q /= 1000000000000000
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_grill_t >= 1000000000000){
+                    shown_grill_t /= 1000000000000
+                    EL_grills.innerHTML =  + ' Grill: ' + Math.round(shown_grill_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_grill_b >= 1000000000){
+                    shown_grill_b /= 1000000000
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_grill_m >= 1000000){
+                    shown_grill_m /= 1000000
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (grill_price < 1000000){
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(total_grill_ten * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 100){
+                grill_price_hundred = grill_price
+                total_grill_hundred = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_grill_hundred += grill_price_hundred
+                    grill_price_hundred *= 1.15
+                }
+                shown_grill_q = total_grill_hundred
+                shown_grill_t = total_grill_hundred
+                shown_grill_b = total_grill_hundred
+                shown_grill_m = total_grill_hundred
+                if (shown_grill_q >= 1000000000000000){
+                    shown_grill_q /= 1000000000000000
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_grill_t >= 1000000000000){
+                    shown_grill_t /= 1000000000000
+                    EL_grills.innerHTML =  + ' Grill: ' + Math.round(shown_grill_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_grill_b >= 1000000000){
+                    shown_grill_b /= 1000000000
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_grill_m >= 1000000){
+                    shown_grill_m /= 1000000
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(shown_grill_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (grill_price < 1000000){
+                    EL_grills.innerHTML = grills + ' Grill: ' + Math.round(total_grill_hundred * 10) / 10 + ' Cooked Bacon'
+                }
+            }
+        }
+        function factory_amount_counter(){
+            if (amount_number == 1){
+                shown_factory_q = factory_price
+                shown_factory_t = factory_price
+                shown_factory_b = factory_price
+                shown_factory_m = factory_price
+                if (factory_price >= 1000000000000000){
+                    shown_factory_q /= 1000000000000000
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (factory_price >= 1000000000000){
+                    shown_factory_t /= 1000000000000
+                    EL_factorys.innerHTML =  + ' Factory: ' + Math.round(shown_factory_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (factory_price >= 1000000000){
+                    shown_factory_b /= 1000000000
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (factory_price >= 1000000){
+                    shown_factory_m /= 1000000
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (factory_price < 1000000){
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(factory_price * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 10){
+                factory_price_ten = factory_price
+                total_factory_ten = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_factory_ten += factory_price_ten
+                    factory_price_ten *= 1.15
+                }
+                shown_factory_q = total_factory_ten
+                shown_factory_t = total_factory_ten
+                shown_factory_b = total_factory_ten
+                shown_factory_m = total_factory_ten
+                if (shown_factory_q >= 1000000000000000){
+                    shown_factory_q /= 1000000000000000
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_factory_t >= 1000000000000){
+                    shown_factory_t /= 1000000000000
+                    EL_factorys.innerHTML =  + ' Factory: ' + Math.round(shown_factory_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_factory_b >= 1000000000){
+                    shown_factory_b /= 1000000000
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_factory_m >= 1000000){
+                    shown_factory_m /= 1000000
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (factory_price < 1000000){
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(total_factory_ten * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 100){
+                factory_price_hundred = factory_price
+                total_factory_hundred = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_factory_hundred += factory_price_hundred
+                    factory_price_hundred *= 1.15
+                }
+                shown_factory_q = total_factory_hundred
+                shown_factory_t = total_factory_hundred
+                shown_factory_b = total_factory_hundred
+                shown_factory_m = total_factory_hundred
+                if (shown_factory_q >= 1000000000000000){
+                    shown_factory_q /= 1000000000000000
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_factory_t >= 1000000000000){
+                    shown_factory_t /= 1000000000000
+                    EL_factorys.innerHTML =  + ' Factory: ' + Math.round(shown_factory_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_factory_b >= 1000000000){
+                    shown_factory_b /= 1000000000
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_factory_m >= 1000000){
+                    shown_factory_m /= 1000000
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(shown_factory_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (factory_price < 1000000){
+                    EL_factorys.innerHTML = factorys + ' Factory: ' + Math.round(total_factory_hundred * 10) / 10 + ' Cooked Bacon'
+                }
+            }
+        }
+        function ff_amount_counter(){
+            if (amount_number == 1){
+                shown_ff_q = ff_price
+                shown_ff_t = ff_price
+                shown_ff_b = ff_price
+                shown_ff_m = ff_price
+                if (ff_price >= 1000000000000000){
+                    shown_ff_q /= 1000000000000000
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (ff_price >= 1000000000000){
+                    shown_ff_t /= 1000000000000
+                    EL_ffs.innerHTML =  + ' Forest Fire: ' + Math.round(shown_ff_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (ff_price >= 1000000000){
+                    shown_ff_b /= 1000000000
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (ff_price >= 1000000){
+                    shown_ff_m /= 1000000
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (ff_price < 1000000){
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(ff_price * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 10){
+                ff_price_ten = ff_price
+                total_ff_ten = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_ff_ten += ff_price_ten
+                    ff_price_ten *= 1.15
+                }
+                shown_ff_q = total_ff_ten
+                shown_ff_t = total_ff_ten
+                shown_ff_b = total_ff_ten
+                shown_ff_m = total_ff_ten
+                if (shown_ff_q >= 1000000000000000){
+                    shown_ff_q /= 1000000000000000
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_ff_t >= 1000000000000){
+                    shown_ff_t /= 1000000000000
+                    EL_ffs.innerHTML =  + ' Forest Fire: ' + Math.round(shown_ff_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_ff_b >= 1000000000){
+                    shown_ff_b /= 1000000000
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_ff_m >= 1000000){
+                    shown_ff_m /= 1000000
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (ff_price < 1000000){
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(total_ff_ten * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 100){
+                ff_price_hundred = ff_price
+                total_ff_hundred = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_ff_hundred += ff_price_hundred
+                    ff_price_hundred *= 1.15
+                }
+                shown_ff_q = total_ff_hundred
+                shown_ff_t = total_ff_hundred
+                shown_ff_b = total_ff_hundred
+                shown_ff_m = total_ff_hundred
+                if (shown_ff_q >= 1000000000000000){
+                    shown_ff_q /= 1000000000000000
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_ff_t >= 1000000000000){
+                    shown_ff_t /= 1000000000000
+                    EL_ffs.innerHTML =  + ' Forest Fire: ' + Math.round(shown_ff_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_ff_b >= 1000000000){
+                    shown_ff_b /= 1000000000
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_ff_m >= 1000000){
+                    shown_ff_m /= 1000000
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(shown_ff_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (ff_price < 1000000){
+                    EL_ffs.innerHTML = ffs + ' Forest Fire: ' + Math.round(total_ff_hundred * 10) / 10 + ' Cooked Bacon'
+                }
+            }
+        }
+        function volcano_amount_counter(){
+            if (amount_number == 1){
+                shown_volcano_q = volcano_price
+                shown_volcano_t = volcano_price
+                shown_volcano_b = volcano_price
+                shown_volcano_m = volcano_price
+                if (volcano_price >= 1000000000000000){
+                    shown_volcano_q /= 1000000000000000
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (volcano_price >= 1000000000000){
+                    shown_volcano_t /= 1000000000000
+                    EL_volcanos.innerHTML =  + ' Volcano: ' + Math.round(shown_volcano_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (volcano_price >= 1000000000){
+                    shown_volcano_b /= 1000000000
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (volcano_price >= 1000000){
+                    shown_volcano_m /= 1000000
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (volcano_price < 1000000){
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(volcano_price * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 10){
+                volcano_price_ten = volcano_price
+                total_volcano_ten = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_volcano_ten += volcano_price_ten
+                    volcano_price_ten *= 1.15
+                }
+                shown_volcano_q = total_volcano_ten
+                shown_volcano_t = total_volcano_ten
+                shown_volcano_b = total_volcano_ten
+                shown_volcano_m = total_volcano_ten
+                if (shown_volcano_q >= 1000000000000000){
+                    shown_volcano_q /= 1000000000000000
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_volcano_t >= 1000000000000){
+                    shown_volcano_t /= 1000000000000
+                    EL_volcanos.innerHTML =  + ' Volcano: ' + Math.round(shown_volcano_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_volcano_b >= 1000000000){
+                    shown_volcano_b /= 1000000000
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_volcano_m >= 1000000){
+                    shown_volcano_m /= 1000000
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (volcano_price < 1000000){
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(total_volcano_ten * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 100){
+                volcano_price_hundred = volcano_price
+                total_volcano_hundred = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_volcano_hundred += volcano_price_hundred
+                    volcano_price_hundred *= 1.15
+                }
+                shown_volcano_q = total_volcano_hundred
+                shown_volcano_t = total_volcano_hundred
+                shown_volcano_b = total_volcano_hundred
+                shown_volcano_m = total_volcano_hundred
+                if (shown_volcano_q >= 1000000000000000){
+                    shown_volcano_q /= 1000000000000000
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_volcano_t >= 1000000000000){
+                    shown_volcano_t /= 1000000000000
+                    EL_volcanos.innerHTML =  + ' Volcano: ' + Math.round(shown_volcano_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_volcano_b >= 1000000000){
+                    shown_volcano_b /= 1000000000
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_volcano_m >= 1000000){
+                    shown_volcano_m /= 1000000
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(shown_volcano_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (volcano_price < 1000000){
+                    EL_volcanos.innerHTML = volcanos + ' Volcano: ' + Math.round(total_volcano_hundred * 10) / 10 + ' Cooked Bacon'
+                }
+            }
+        }
+        function ec_amount_counter(){
+            if (amount_number == 1){
+                shown_ec_q = ec_price
+                shown_ec_t = ec_price
+                shown_ec_b = ec_price
+                shown_ec_m = ec_price
+                if (ec_price >= 1000000000000000){
+                    shown_ec_q /= 1000000000000000
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (ec_price >= 1000000000000){
+                    shown_ec_t /= 1000000000000
+                    EL_ecs.innerHTML =  + ' Earths Core: ' + Math.round(shown_ec_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (ec_price >= 1000000000){
+                    shown_ec_b /= 1000000000
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (ec_price >= 1000000){
+                    shown_ec_m /= 1000000
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (ec_price < 1000000){
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(ec_price * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 10){
+                ec_price_ten = ec_price
+                total_ec_ten = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_ec_ten += ec_price_ten
+                    ec_price_ten *= 1.15
+                }
+                shown_ec_q = total_ec_ten
+                shown_ec_t = total_ec_ten
+                shown_ec_b = total_ec_ten
+                shown_ec_m = total_ec_ten
+                if (shown_ec_q >= 1000000000000000){
+                    shown_ec_q /= 1000000000000000
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_ec_t >= 1000000000000){
+                    shown_ec_t /= 1000000000000
+                    EL_ecs.innerHTML =  + ' Earths Core: ' + Math.round(shown_ec_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_ec_b >= 1000000000){
+                    shown_ec_b /= 1000000000
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_ec_m >= 1000000){
+                    shown_ec_m /= 1000000
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (ec_price < 1000000){
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(total_ec_ten * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 100){
+                ec_price_hundred = ec_price
+                total_ec_hundred = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_ec_hundred += ec_price_hundred
+                    ec_price_hundred *= 1.15
+                }
+                shown_ec_q = total_ec_hundred
+                shown_ec_t = total_ec_hundred
+                shown_ec_b = total_ec_hundred
+                shown_ec_m = total_ec_hundred
+                if (shown_ec_q >= 1000000000000000){
+                    shown_ec_q /= 1000000000000000
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_ec_t >= 1000000000000){
+                    shown_ec_t /= 1000000000000
+                    EL_ecs.innerHTML =  + ' Earths Core: ' + Math.round(shown_ec_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_ec_b >= 1000000000){
+                    shown_ec_b /= 1000000000
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_ec_m >= 1000000){
+                    shown_ec_m /= 1000000
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(shown_ec_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (ec_price < 1000000){
+                    EL_ecs.innerHTML = ecs + ' Earths Core: ' + Math.round(total_ec_hundred * 10) / 10 + ' Cooked Bacon'
+                }
+            }
+        }
+        function sun_amount_counter(){
+            if (amount_number == 1){
+                shown_sun_q = sun_price
+                shown_sun_t = sun_price
+                shown_sun_b = sun_price
+                shown_sun_m = sun_price
+                if (sun_price >= 1000000000000000){
+                    shown_sun_q /= 1000000000000000
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (sun_price >= 1000000000000){
+                    shown_sun_t /= 1000000000000
+                    EL_suns.innerHTML =  + ' Sun: ' + Math.round(shown_sun_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (sun_price >= 1000000000){
+                    shown_sun_b /= 1000000000
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (sun_price >= 1000000){
+                    shown_sun_m /= 1000000
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (sun_price < 1000000){
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(sun_price * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 10){
+                sun_price_ten = sun_price
+                total_sun_ten = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_sun_ten += sun_price_ten
+                    sun_price_ten *= 1.15
+                }
+                shown_sun_q = total_sun_ten
+                shown_sun_t = total_sun_ten
+                shown_sun_b = total_sun_ten
+                shown_sun_m = total_sun_ten
+                if (shown_sun_q >= 1000000000000000){
+                    shown_sun_q /= 1000000000000000
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_sun_t >= 1000000000000){
+                    shown_sun_t /= 1000000000000
+                    EL_suns.innerHTML =  + ' Sun: ' + Math.round(shown_sun_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_sun_b >= 1000000000){
+                    shown_sun_b /= 1000000000
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_sun_m >= 1000000){
+                    shown_sun_m /= 1000000
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (sun_price < 1000000){
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(total_sun_ten * 10) / 10 + ' Cooked Bacon'
+                }
+            }else if (amount_number == 100){
+                sun_price_hundred = sun_price
+                total_sun_hundred = 0
+                for (var t = 1; t <= amount_number; t++){
+                    total_sun_hundred += sun_price_hundred
+                    sun_price_hundred *= 1.15
+                }
+                shown_sun_q = total_sun_hundred
+                shown_sun_t = total_sun_hundred
+                shown_sun_b = total_sun_hundred
+                shown_sun_m = total_sun_hundred
+                if (shown_sun_q >= 1000000000000000){
+                    shown_sun_q /= 1000000000000000
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_q * 1000) / 1000 + ' Quadillion Cooked Bacon'
+                }else if (shown_sun_t >= 1000000000000){
+                    shown_sun_t /= 1000000000000
+                    EL_suns.innerHTML =  + ' Sun: ' + Math.round(shown_sun_t * 1000) / 1000 + ' Trillion Cooked Bacon'
+                }else if (shown_sun_b >= 1000000000){
+                    shown_sun_b /= 1000000000
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_b * 1000) / 1000 + ' Billion Cooked Bacon'
+                }else if (shown_sun_m >= 1000000){
+                    shown_sun_m /= 1000000
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(shown_sun_m * 1000) / 1000 + ' Million Cooked Bacon'
+                }else if (sun_price < 1000000){
+                    EL_suns.innerHTML = suns + ' Sun: ' + Math.round(total_sun_hundred * 10) / 10 + ' Cooked Bacon'
+                }
+            }
+        }
 
         setInterval(opacity, 100)
         setInterval(up, 100)
@@ -1201,7 +2021,10 @@
         setInterval(title, 2000)
 
         EL_bacon.addEventListener('click', cook_bacon)
-        EL_fire.addEventListener('click', fire)
+        EL_fire.addEventListener('click', function() {
+            fire();
+        });
+               
         EL_pan.addEventListener('click', pan)
         EL_campfire.addEventListener('click', campfire)
         EL_grill.addEventListener('click', grill)
@@ -1220,6 +2043,9 @@
         EL_ec_up.addEventListener('click', ec_up)
         EL_sun_up.addEventListener('click', sun_up)
         EL_lightning.addEventListener('click', lightning)
+        EL_amount_1.addEventListener('click', amount_1)
+        EL_amount_2.addEventListener('click', amount_2)
+        EL_amount_3.addEventListener('click', amount_3)
 
     </script>
     
